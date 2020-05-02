@@ -12,7 +12,13 @@
 #include "FGUnlockInventorySlot.h"
 #include "FGUnlockArmEquipmentSlot.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+
+
+#include "UObject/UObjectGlobals.h" 
+#include "FGSchematicPurchasedDependency.h"
+
 #include "ItemDescriptorHelper.generated.h"
+
 
 /**
  * 
@@ -81,8 +87,10 @@ class NOGSBPS_API UItemDescriptorHelper : public UBlueprintFunctionLibrary
 		static void SetUnlocks(TSubclassOf< UFGSchematic > inClass, TArray< class UFGUnlock* > Unlocks) { inClass.GetDefaultObject()->mUnlocks = Unlocks; }
 	UFUNCTION(BlueprintCallable, Category = "Editor|Schematic")
 		static void SetSchematicIcon(TSubclassOf< UFGSchematic > inClass, FSlateBrush Icon) { inClass.GetDefaultObject()->mSchematicIcon = Icon; }
+
 	UFUNCTION(BlueprintCallable, Category = "Editor|Schematic")
-		static void SetDependsOnSchematic(TSubclassOf< UFGSchematic > inClass, TSubclassOf< UFGSchematic > Dep) { inClass.GetDefaultObject()->mDependsOnSchematic = Dep; }
+		static void SetDependsOnSchematic(TSubclassOf< UFGSchematic > inClass, TArray<UFGAvailabilityDependency*> Deps) {
+		inClass.GetDefaultObject()->mSchematicDependencies = Deps; }
 	UFUNCTION(BlueprintCallable, Category = "Editor|Schematic")
 		static void SetAdditionalDependsOnSchematic(TSubclassOf< UFGSchematic > inClass, TArray < TSubclassOf< UFGSchematic >> Dep) { inClass.GetDefaultObject()->mAdditionalSchematicDependencies = Dep; }
 	UFUNCTION(BlueprintCallable, Category = "Editor|Schematic")
