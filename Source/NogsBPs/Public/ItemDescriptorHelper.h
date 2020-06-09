@@ -12,7 +12,7 @@
 #include "FGUnlockInventorySlot.h"
 #include "FGUnlockArmEquipmentSlot.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-
+#include "FGSchematicPurchasedDependency.h"
 
 #include "UObject/UObjectGlobals.h" 
 #include "FGSchematicPurchasedDependency.h"
@@ -67,7 +67,7 @@ class NOGSBPS_API UItemDescriptorHelper : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, Category = "Editor|Item")
 		static void SetStackSize(TSubclassOf<UFGItemDescriptor> item, EStackSize  Value) { item.GetDefaultObject()->mStackSize = Value; }
 	UFUNCTION(BlueprintPure, Category = "Editor|Item")
-		static void GetStackSize(TSubclassOf<UFGItemDescriptor> item, UPARAM(REF)EStackSize  &Value) { Value = item.GetDefaultObject()->mStackSize; }
+		static EStackSize GetStackSize(TSubclassOf<UFGItemDescriptor> item) { return item.GetDefaultObject()->mStackSize; }
 
 	// Schematic stuff
 
@@ -169,6 +169,10 @@ class NOGSBPS_API UItemDescriptorHelper : public UBlueprintFunctionLibrary
 
 
 	static TArray< TSubclassOf< UObject > >  GetClassFromSoftPtr2(TArray< TSoftClassPtr< UObject > >  In);
+
+
+	UFUNCTION(BlueprintCallable, Category = "Editor| Schematics")
+	static void InitSchematicPurchaseDep(UFGSchematicPurchasedDependency * selfref, TArray< TSubclassOf< class UFGSchematic > > schematics, bool requireAllSchematicsToBePurchased);
 
  };
 

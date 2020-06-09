@@ -117,6 +117,7 @@ void UNBlueprintFunctionLibrary::convertJsonValueToUProperty(TSharedPtr<FJsonVal
 	}
 }
 
+
 TSharedPtr<FJsonValue> UNBlueprintFunctionLibrary::convertUPropToJsonValue(UProperty* prop, void* ptrToProp, bool UsePretty) {
 	if (auto strProp = Cast<UStrProperty>(prop)) {
 		return TSharedPtr<FJsonValue>(new FJsonValueString(strProp->GetPropertyValue(ptrToProp)));

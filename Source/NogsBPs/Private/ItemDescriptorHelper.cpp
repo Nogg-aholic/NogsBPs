@@ -82,3 +82,8 @@ TArray<TSubclassOf<UObject>> UItemDescriptorHelper::GetClassFromSoftPtr2(TArray<
 	else
 		return TArray<TSubclassOf<UObject>>();
 }
+
+void UItemDescriptorHelper::InitSchematicPurchaseDep(UFGSchematicPurchasedDependency * selfref, TArray<TSubclassOf<class UFGSchematic>> schematics, bool requireAllSchematicsToBePurchased)
+{
+	selfref->Init(schematics, requireAllSchematicsToBePurchased);
+}
