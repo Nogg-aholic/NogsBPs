@@ -87,3 +87,13 @@ void UItemDescriptorHelper::InitSchematicPurchaseDep(UFGSchematicPurchasedDepend
 {
 	selfref->Init(schematics, requireAllSchematicsToBePurchased);
 }
+
+void UItemDescriptorHelper::GetSchematicDependencies(TSubclassOf<UFGSchematic> inClass, UPARAM(ref)TArray<UFGAvailabilityDependency*>& out_schematicDependencies)
+{
+	if (inClass)
+		out_schematicDependencies = inClass.GetDefaultObject()->mSchematicDependencies;
+	return;
+}
+
+
+

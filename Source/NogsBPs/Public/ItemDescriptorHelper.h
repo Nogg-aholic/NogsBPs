@@ -90,12 +90,13 @@ class NOGSBPS_API UItemDescriptorHelper : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, Category = "Editor|Schematic")
 		static void SetDependsOnSchematic(TSubclassOf< UFGSchematic > inClass, TArray<UFGAvailabilityDependency*> Deps) {
-		inClass.GetDefaultObject()->mSchematicDependencies = Deps; }
+		inClass.GetDefaultObject()->mSchematicDependencies = Deps;
+	}
 	UFUNCTION(BlueprintCallable, Category = "Editor|Schematic")
 		static void SetAdditionalDependsOnSchematic(TSubclassOf< UFGSchematic > inClass, TArray < TSubclassOf< UFGSchematic >> Dep) { inClass.GetDefaultObject()->mAdditionalSchematicDependencies = Dep; }
 	UFUNCTION(BlueprintCallable, Category = "Editor|Schematic")
 		static void SetTechTier(TSubclassOf< UFGSchematic > inClass, int32 Tier) { inClass.GetDefaultObject()->mTechTier = Tier; }
-	
+
 
 
 
@@ -115,7 +116,7 @@ class NOGSBPS_API UItemDescriptorHelper : public UBlueprintFunctionLibrary
 		static void SetProducedIn(TSubclassOf<UFGRecipe> recipe, TArray< TSoftClassPtr< UObject > > mProducedIn) { recipe.GetDefaultObject()->mProducedIn = mProducedIn; };
 	UFUNCTION(BlueprintCallable, Category = "Editor|Recipe")
 		static TArray<TSoftClassPtr<UObject>> GetSoftClass(TArray<UObject*> In);
-	
+
 
 	// FG Unlock
 
@@ -163,7 +164,7 @@ class NOGSBPS_API UItemDescriptorHelper : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintPure, Category = "Editor|Recipe")
 		static TArray<TSoftClassPtr<UObject>> GetSoftClass_(TArray<UClass*> In);
-	
+
 	UFUNCTION(BlueprintPure, Category = "Editor|Recipe")
 		static TArray<UClass*> GetClassFromSoftPtr(TArray<TSoftClassPtr<UObject>> In);
 
@@ -172,8 +173,8 @@ class NOGSBPS_API UItemDescriptorHelper : public UBlueprintFunctionLibrary
 
 
 	UFUNCTION(BlueprintCallable, Category = "Editor| Schematics")
-	static void InitSchematicPurchaseDep(UFGSchematicPurchasedDependency * selfref, TArray< TSubclassOf< class UFGSchematic > > schematics, bool requireAllSchematicsToBePurchased);
+		static void InitSchematicPurchaseDep(UFGSchematicPurchasedDependency * selfref, TArray< TSubclassOf< class UFGSchematic > > schematics, bool requireAllSchematicsToBePurchased);
 
- };
-
-
+	UFUNCTION(BlueprintCallable, Category = "Editor| Schematics")
+		static void GetSchematicDependencies(TSubclassOf< UFGSchematic > inClass, UPARAM(ref) TArray<  UFGAvailabilityDependency* >& out_schematicDependencies);
+};
