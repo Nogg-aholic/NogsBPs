@@ -89,7 +89,7 @@ class NOGSBPS_API UItemDescriptorHelper : public UBlueprintFunctionLibrary
 		static void SetSchematicIcon(TSubclassOf< UFGSchematic > inClass, FSlateBrush Icon) { inClass.GetDefaultObject()->mSchematicIcon = Icon; }
 
 	UFUNCTION(BlueprintCallable, Category = "Editor|Schematic")
-		static void SetDependsOnSchematic(TSubclassOf< UFGSchematic > inClass, TArray<UFGAvailabilityDependency*> Deps) {
+		static void SetDependsOnSchematic(TSubclassOf< UFGSchematic > inClass, TArray< class UFGAvailabilityDependency* > Deps) {
 		inClass.GetDefaultObject()->mSchematicDependencies = Deps;
 	}
 	UFUNCTION(BlueprintCallable, Category = "Editor|Schematic")
