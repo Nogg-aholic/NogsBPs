@@ -13,11 +13,17 @@
 	"IsBetaVersion": false,
 	"Installed": false,
 	"CanContainContent" : true,
-	"Modules": [
-		{
-			"Name": "NogsBPs",
-			"Type": "Editor",
-			"LoadingPhase": "Default"
-		}
-	]
+  "Modules": [
+    {
+      "Name": "NogsBPs",
+      "Type": "Editor",
+      "LoadingPhase": "Default"
+    }
+  ],
+  "Plugins": [
+    {
+      "Name": "JsonStructs",
+      "Enabled": true
+    }
+  ]
 }
