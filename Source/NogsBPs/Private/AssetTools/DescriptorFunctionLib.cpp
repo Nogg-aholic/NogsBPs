@@ -4,56 +4,30 @@
 #include "AssetTools/DescriptorFunctionLib.h"
 #include "Kismet/KismetMathLibrary.h"
 
-FItemDescriptorStruct::FItemDescriptorStruct()
+
+void UDescriptorFunctionLib::SetUseName(TSubclassOf<UFGItemDescriptor> item, bool UseName)
 {
-	Class = nullptr;
-	Name = "";
-	Form = EResourceForm::RF_INVALID;
-	StackSize = EStackSize::SS_ONE;
-	RememberPickUp = false;
-	CanBeDiscarded = true;
-	EnergyValue = 0.f;
-	RadioactiveDecay = 0.f;
-	FluidColor = FColor();
-	ConveyorMesh = nullptr;
-	Category = nullptr;
-	IconSmall = nullptr;
-	IconBig = nullptr;
+	item.GetDefaultObject()->mUseDisplayNameAndDescription = UseName;
+	item->MarkPackageDirty();
 }
 
-FItemDescriptorStruct::FItemDescriptorStruct(TSubclassOf<class UFGItemDescriptor> inClass)
-{
-	if (!inClass)
-	{
-		Class = nullptr;
-		Name = "";
-		Form = EResourceForm::RF_INVALID;
-		StackSize = EStackSize::SS_ONE;
-		RememberPickUp = false;
-		CanBeDiscarded = true;
-		EnergyValue = 0.f;
-		RadioactiveDecay = 0.f;
-		FluidColor = FColor();
-		ConveyorMesh = nullptr;
-		Category = nullptr;
-		IconSmall = nullptr;
-		IconBig = nullptr;
-		return;
-	}
-		
 
-	Class = inClass;
-	Name = inClass.GetDefaultObject()->mDisplayName.ToString();
-	Form = inClass.GetDefaultObject()->mForm;
-	StackSize = inClass.GetDefaultObject()->mStackSize;
-	RememberPickUp = inClass.GetDefaultObject()->mRememberPickUp;
-	CanBeDiscarded = inClass.GetDefaultObject()->mCanBeDiscarded;
-	EnergyValue = inClass.GetDefaultObject()->mEnergyValue;
-	RadioactiveDecay = inClass.GetDefaultObject()->mRadioactiveDecay;
-	FluidColor = inClass.GetDefaultObject()->mFluidColor;
-	Category = inClass.GetDefaultObject()->mItemCategory;
-	IconSmall = inClass.GetDefaultObject()->mSmallIcon;
-	ConveyorMesh = inClass.GetDefaultObject()->mConveyorMesh;
+void UDescriptorFunctionLib::SetName(TSubclassOf<UFGItemDescriptor> item, FText Name)
+{
+	item.GetDefaultObject()->mDisplayName = Name;
+	item->MarkPackageDirty();
+}
+
+void UDescriptorFunctionLib::SetDescription(TSubclassOf<UFGItemDescriptor> item, FText Name)
+{
+	item.GetDefaultObject()->mDescription = Name;
+	item->MarkPackageDirty();
+}
+
+void UDescriptorFunctionLib::SetMesh(TSubclassOf<UFGItemDescriptor> item, UStaticMesh* Mesh)
+{
+	item.GetDefaultObject()->mConveyorMesh = Mesh;
+	item->MarkPackageDirty();
 }
 
 void UDescriptorFunctionLib::SetMaterial(TSubclassOf<UFGItemDescriptor> item, UMaterialInterface * Mat)
@@ -64,40 +38,69 @@ void UDescriptorFunctionLib::SetMaterial(TSubclassOf<UFGItemDescriptor> item, UM
 	return;
 #endif
 }
-void UDescriptorFunctionLib::SetDescriptorFromStruct(TSubclassOf<UFGItemDescriptor> inClass, FItemDescriptorStruct Struct)
+
+void UDescriptorFunctionLib::SetBigIcon(TSubclassOf<UFGItemDescriptor> item, UTexture2D* Icon)
 {
-	if (!inClass)
-		return;
-	if (FItemDescriptorStruct() == Struct)
-		return;
-	if (Struct == inClass)
-		return;
-
-	inClass.GetDefaultObject()->mDisplayName = FText::FromString(Struct.Name);
-	inClass.GetDefaultObject()->mForm = Struct.Form;
-	inClass.GetDefaultObject()->mStackSize = Struct.StackSize;
-	inClass.GetDefaultObject()->mRememberPickUp = Struct.RememberPickUp;
-	inClass.GetDefaultObject()->mCanBeDiscarded = Struct.CanBeDiscarded;
-	inClass.GetDefaultObject()->mEnergyValue = Struct.EnergyValue;
-	inClass.GetDefaultObject()->mRadioactiveDecay = Struct.RadioactiveDecay;
-	inClass.GetDefaultObject()->mFluidColor = Struct.FluidColor;
-	inClass.GetDefaultObject()->mItemCategory = Struct.Category;
-	inClass.GetDefaultObject()->mSmallIcon = Struct.IconSmall;
-	inClass.GetDefaultObject()->mPersistentBigIcon = Struct.IconBig;
-	inClass.GetDefaultObject()->mConveyorMesh = Struct.ConveyorMesh;
-
-	inClass->MarkPackageDirty();
-	
+	item.GetDefaultObject()->mPersistentBigIcon = Icon;
+	item->MarkPackageDirty();
 }
 
-KISMET_MATH_FORCEINLINE
-bool UDescriptorFunctionLib::EqualEqual_FDescriptorStructFDescriptorStruct(FItemDescriptorStruct A, FItemDescriptorStruct B)
+void UDescriptorFunctionLib::SetSmallIcon(TSubclassOf<UFGItemDescriptor> item, UTexture2D* Icon)
 {
-	return A == B;
+	item.GetDefaultObject()->mSmallIcon = Icon;
+	item->MarkPackageDirty();
 }
 
-KISMET_MATH_FORCEINLINE
-bool UDescriptorFunctionLib::EqualEqual_FDescriptorStructUFGItemDescriptor(FItemDescriptorStruct A, TSubclassOf<class UFGItemDescriptor> B)
+void UDescriptorFunctionLib::SetFluidColor(TSubclassOf<UFGItemDescriptor> item, FColor Value)
 {
-	return A == B;
+	item.GetDefaultObject()->mFluidColor = Value;
+	item->MarkPackageDirty();
 }
+
+void UDescriptorFunctionLib::SetForm(TSubclassOf<UFGItemDescriptor> item, EResourceForm Value)
+{
+	item.GetDefaultObject()->mForm = Value;
+	item->MarkPackageDirty();
+}
+
+void UDescriptorFunctionLib::SetCategory(TSubclassOf<UFGItemDescriptor> item, TSubclassOf<UFGItemCategory> Value)
+{
+	item.GetDefaultObject()->mItemCategory = Value;
+	item->MarkPackageDirty();
+}
+
+void UDescriptorFunctionLib::SetCanbeDisgarded(TSubclassOf<UFGItemDescriptor> item, bool Value)
+{
+	item.GetDefaultObject()->mCanBeDiscarded = Value;
+	item->MarkPackageDirty();
+}
+
+void UDescriptorFunctionLib::SetRememberPickUp(TSubclassOf<UFGItemDescriptor> item, bool Value)
+{
+	item.GetDefaultObject()->mRememberPickUp = Value;
+	item->MarkPackageDirty();
+}
+
+void UDescriptorFunctionLib::SetEnergyValue(TSubclassOf<UFGItemDescriptor> item, float Value)
+{
+	item.GetDefaultObject()->mEnergyValue = Value;
+	item->MarkPackageDirty();
+}
+
+void UDescriptorFunctionLib::SetRadioactiveDecay(TSubclassOf<UFGItemDescriptor> item, float Value)
+{
+	item.GetDefaultObject()->mRadioactiveDecay = Value;
+	item->MarkPackageDirty();
+}
+
+void UDescriptorFunctionLib::SetStackSize(TSubclassOf<UFGItemDescriptor> item, EStackSize Value)
+{
+	item.GetDefaultObject()->mStackSize = Value;
+	item->MarkPackageDirty();
+}
+
+EStackSize UDescriptorFunctionLib::GetStackSize(TSubclassOf<UFGItemDescriptor> item)
+{
+	return item.GetDefaultObject()->mStackSize;
+}
+
