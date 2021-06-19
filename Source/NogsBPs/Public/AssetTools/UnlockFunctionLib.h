@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "FGSchematic.h"
 #include "Unlocks/FGUnlockRecipe.h"
 #include "Unlocks/FGUnlockScannableResource.h"
 #include "Unlocks/FGUnlockInventorySlot.h"
@@ -24,7 +25,17 @@ struct AFScannableResourcePair_steal {
 	friend type get(AFScannableResourcePair_steal);
 };
 
+struct mIncludeInBuilds_steal {
+	typedef EIncludeInBuilds UFGSchematic::* type;
+	friend type get(mIncludeInBuilds_steal);
+};
+
 template struct Rob<AFScannableResourcePair_steal, &UFGUnlockScannableResource::mResourcePairsToAddToScanner>;
+
+
+
+template struct Rob<mIncludeInBuilds_steal, &UFGSchematic::mIncludeInBuilds>;
+
 
 /**
  * 

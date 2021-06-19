@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "FGSchematic.h"
 #include "AvailabilityDependencies/FGItemPickedUpDependency.h"
 #include "AvailabilityDependencies/FGSchematicPurchasedDependency.h"
 #include "AvailabilityDependencies/FGRecipeUnlockedDependency.h"
@@ -20,7 +19,9 @@
 #include "Unlocks/FGUnlockSchematic.h"
 #include "FGSchematicCategory.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "UnlockFunctionLib.h"
 #include "SchematicFunctionLib.generated.h"
+
 
 
 
@@ -34,6 +35,9 @@ class NOGSBPS_API USchematicFunctionLib : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, Category = "Editor| Schematic")
 	static void SetDisplayName(TSubclassOf<UFGSchematic> inClass, FText Name);
+	
+	UFUNCTION(BlueprintCallable, Category = "Editor| Schematic")
+	static void SetUsedInBuild(TSubclassOf<UFGSchematic> inClass, EIncludeInBuilds State);
 	UFUNCTION(BlueprintCallable, Category = "Editor| Schematic")
 	static void SetDescription(TSubclassOf<UFGSchematic> inClass, FText Description);
 	UFUNCTION(BlueprintCallable, Category = "Editor| Schematic")
