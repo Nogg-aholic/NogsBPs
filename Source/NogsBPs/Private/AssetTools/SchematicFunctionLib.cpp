@@ -10,6 +10,13 @@ void USchematicFunctionLib::SetDisplayName(TSubclassOf<UFGSchematic> inClass, FT
 	inClass->MarkPackageDirty();
 }
 
+
+void USchematicFunctionLib::SetDescription(TSubclassOf<UFGSchematic> inClass, FText Description)
+{
+	inClass.GetDefaultObject()->mDescription = Description;
+	inClass->MarkPackageDirty();
+}
+
 void USchematicFunctionLib::SetType(TSubclassOf<UFGSchematic> inClass, ESchematicType Type)
 {
 	inClass.GetDefaultObject()->mType = Type;

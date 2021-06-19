@@ -12,23 +12,7 @@ public class NogsBPs : ModuleRules
 	public NogsBPs(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-
-		PublicIncludePaths.AddRange(
-			new string[] {
-				// ... add public include paths required here ...
-                "JsonStructs/Public"
-			}
-			);
-
-
-		PrivateIncludePaths.AddRange(
-			new string[] {
-				// ... add other private include paths required here ...
-                "JsonStructs/Private"
-			}
-			);
-
-
+		
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{

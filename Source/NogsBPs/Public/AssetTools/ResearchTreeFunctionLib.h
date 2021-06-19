@@ -20,7 +20,7 @@ class NOGSBPS_API UResearchTreeFunctionLib : public UBlueprintFunctionLibrary
 
 
 	UFUNCTION(BlueprintCallable, Category = "Editor| ResearchTree")
-	static void SetRecipeDisplayName(TSubclassOf<UFGResearchTree> Obj, FText mDisplayName);
+	static void SetDisplayName(TSubclassOf<UFGResearchTree> Obj, FText mDisplayName);
 	UFUNCTION(BlueprintCallable, Category = "Editor| ResearchTree")
 	static void SetPreUnlockDisplayName(TSubclassOf<UFGResearchTree> Obj, FText mPreUnlockDisplayName);
 	UFUNCTION(BlueprintCallable, Category = "Editor| ResearchTree")

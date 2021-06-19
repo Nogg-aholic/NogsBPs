@@ -3,7 +3,7 @@
 
 #include "AssetTools/ResearchTreeFunctionLib.h"
 
-void UResearchTreeFunctionLib::SetRecipeDisplayName(TSubclassOf<UFGResearchTree> Obj, FText mDisplayName)
+void UResearchTreeFunctionLib::SetDisplayName(TSubclassOf<UFGResearchTree> Obj, FText mDisplayName)
 {
 	Obj.GetDefaultObject()->mDisplayName = mDisplayName;
 	Obj->MarkPackageDirty();
