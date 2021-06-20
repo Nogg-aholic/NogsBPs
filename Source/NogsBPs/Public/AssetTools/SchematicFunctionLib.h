@@ -37,7 +37,7 @@ class NOGSBPS_API USchematicFunctionLib : public UBlueprintFunctionLibrary
 	static void SetDisplayName(TSubclassOf<UFGSchematic> inClass, FText Name);
 	
 	UFUNCTION(BlueprintCallable, Category = "Editor| Schematic")
-	static void SetUsedInBuild(TSubclassOf<UFGSchematic> inClass, EIncludeInBuilds State);
+	static void SetIncludedInBuild(TSubclassOf<UFGSchematic> inClass, EIncludeInBuilds State);
 	UFUNCTION(BlueprintCallable, Category = "Editor| Schematic")
 	static void SetDescription(TSubclassOf<UFGSchematic> inClass, FText Description);
 	UFUNCTION(BlueprintCallable, Category = "Editor| Schematic")

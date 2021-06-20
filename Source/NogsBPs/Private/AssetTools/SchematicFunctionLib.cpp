@@ -10,7 +10,7 @@ void USchematicFunctionLib::SetDisplayName(TSubclassOf<UFGSchematic> inClass, FT
 	inClass->MarkPackageDirty();
 }
 
-void USchematicFunctionLib::SetUsedInBuild(TSubclassOf<UFGSchematic> inClass, EIncludeInBuilds State)
+void USchematicFunctionLib::SetIncludedInBuild(TSubclassOf<UFGSchematic> inClass, EIncludeInBuilds State)
 {
 	inClass.GetDefaultObject()->*get(mIncludeInBuilds_steal()) = State;
 	inClass->MarkPackageDirty();
