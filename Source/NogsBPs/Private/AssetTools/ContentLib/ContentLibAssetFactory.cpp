@@ -46,10 +46,10 @@ UObject* UContentLibAssetFactory::FactoryCreateBinary(UClass* Class, UObject* In
 		if (!Result.IsValid())
 			return nullptr;
 
-		if (Result->HasField("LibClass") && Result->HasField("LibValue"))
+		if (Result->HasField("JS_LibClass") && Result->HasField("JS_LibValue"))
 		{
-			FString String = Result->GetStringField("LibClass");
-			TSharedPtr<FJsonObject> Obj = Result->GetObjectField("LibValue");
+			FString String = Result->GetStringField("JS_LibClass");
+			TSharedPtr<FJsonObject> Obj = Result->GetObjectField("JS_LibValue");
 			Result = Obj;
 			if (FPackageName::IsValidObjectPath(String))
 			{
