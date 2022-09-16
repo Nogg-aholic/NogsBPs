@@ -65,7 +65,7 @@ void UDescriptorFunctionLib::SetForm(TSubclassOf<UFGItemDescriptor> item, EResou
 
 void UDescriptorFunctionLib::SetCategory(TSubclassOf<UFGItemDescriptor> item, TSubclassOf<UFGItemCategory> Value)
 {
-	item.GetDefaultObject()->mItemCategory = Value;
+	item.GetDefaultObject()->mCategory = Value;
 	item->MarkPackageDirty();
 }
 
